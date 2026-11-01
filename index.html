@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      display: flex;
+      justify-content: center;
+      padding: 30px 12px;
+    }
+    .calculator {
+      background: #ffffff;
+      width: 100%;
+      max-width: 340px;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid #d0d5dd;
+    }
+    .screen {
+      background: #1d2939;
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 10px 12px;
+      text-align: right;
+      margin-bottom: 14px;
+    }
+    #memIndicator { float: left; font-size: 13px; color: #fec84b; min-height: 16px; }
+    #expression { font-size: 13px; color: #98a2b3; min-height: 16px; }
+    #display { font-size: 30px; word-wrap: break-word; }
+    #display.error { font-size: 18px; color: #fda29b; padding: 8px 0; }
+
+    .keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .keys button {
+      padding: 14px 0;
+      font-size: 18px;
+      border: 1px solid #d0d5dd;
+      background: #f9fafb;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .keys button:hover { background: #eaecf0; }
+    .keys .op { background: #d1e0ff; }
+    .keys .mem { background: #fef0c7; font-size: 15px; }
+    .keys .equals { background: #175cd3; color: #ffffff; }
+    .keys .clear { background: #fee4e2; }
+    .keys .zero { grid-column: span 2; }
+
+    .history { margin-top: 16px; }
+    .history h2 { font-size: 16px; margin: 0 0 6px; }
+    .history ul { margin: 0; padding-left: 20px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+
+    <div class="screen">
+      <div id="memIndicator"></div>
+      <div id="expression"></div>
+      <div id="display">0</div>
+    </div>
+
+    <div class="keys">
+      <button class="mem" onclick="memoryClear()">MC</button>
+      <button class="mem" onclick="memoryRecall()">MR</button>
+      <button class="mem" onclick="memoryAdd()">M+</button>
+      <button class="mem" onclick="memorySubtract()">M-</button>
+
+      <button class="clear" onclick="clearAll()">C</button>
+      <button class="op" onclick="toggleSign()">+/-</button>
+      <button class="op" onclick="percent()">%</button>
+      <button class="op" onclick="pressOperator('/')">&divide;</button>
+
+      <button onclick="pressNumber('7')">7</button>
+      <button onclick="pressNumber('8')">8</button>
+      <button onclick="pressNumber('9')">9</button>
+      <button class="op" onclick="pressOperator('*')">&times;</button>
+
+      <button onclick="pressNumber('4')">4</button>
+      <button onclick="pressNumber('5')">5</button>
+      <button onclick="pressNumber('6')">6</button>
+      <button class="op" onclick="pressOperator('-')">&minus;</button>
+
+      <button onclick="pressNumber('1')">1</button>
+      <button onclick="pressNumber('2')">2</button>
+      <button onclick="pressNumber('3')">3</button>
+      <button class="op" onclick="pressOperator('+')">+</button>
+
+      <button class="zero" onclick="pressNumber('0')">0</button>
+      <button onclick="pressDecimal()">.</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+
+    <div class="history">
+      <h2>Last 5 results</h2>
+      <ul id="historyList"></ul>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
